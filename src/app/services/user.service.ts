@@ -6,16 +6,16 @@ import { User } from '../models/user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class TransferenciaService {
-  private apiUrl = 'http://localhost:8080/clients/';
+export class UserService {
+  private apiUrl = 'http://localhost:8080/clients'; // Verifique se a URL do backend está correta
 
   constructor(private http: HttpClient) {}
 
-  obterTransferencias(): Observable<User[]> {
+  public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl);
   }
 
-  criarTransferencia(transferencia: User): Observable<User> {
-    return this.http.post<User>(this.apiUrl, transferencia);
+  public addUser(user: User): Observable<User> {
+    return this.http.post<User>(this.apiUrl, user);
   }
 }

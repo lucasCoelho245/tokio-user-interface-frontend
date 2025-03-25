@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column; // Deixa os cards um abaixo do outro
+  align-items: center; // Centraliza os cards
+  gap: 20px; // Adiciona espaço entre os cards
+}
+
+.card {
+  width: 90%; // Ocupar a maior parte da largura disponível
+  max-width: 600px; // Define um limite máximo
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.table-responsive {
+  overflow-x: auto; // Impede que a tabela estoure o card
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%; // Em telas menores, ocupa toda a largura
+  }
+}

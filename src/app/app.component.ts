@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
+  public users: any[] = [];
+
+  public addUser(user: any): void {
+    this.users.push(user);
+  }
 }

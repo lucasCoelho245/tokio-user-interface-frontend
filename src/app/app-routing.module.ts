@@ -1,19 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './components/home/home.component'
-import { AboutComponent } from './components/about/about.component'
-
+import { CadastroUserComponent } from './components/cadastro-user/cadastro-user.component';
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'about',
-    component: AboutComponent
-  }
+  { path: '', component: CadastroUserComponent },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

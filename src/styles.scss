@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+.container {
+  margin-top: 20px;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.card-header {
+  background: #f8f9fa;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.table {
+  margin-top: 15px;
+}
+
+button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .col-md-6 {
+    width: 100%;
+  }
+}

@@ -1,22 +1,28 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {AppComponent} from './app.component';
-import {AboutComponent} from './components/about/about.component';
-import {HomeComponent} from './components/home/home.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
-import { TransferenciasComponent } from './components/transferencias/transferencias.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { UserFormComponent } from './components/form/user-form.component';
+import { UserTableComponent } from './components/user-table/user-table.component';
+import { CadastroUserComponent } from './components/cadastro-user/cadastro-user.component';
+import {TextMaskModule} from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent,
-    HomeComponent,
-    TransferenciasComponent,
+    UserFormComponent,
+    UserTableComponent,
+    CadastroUserComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TextMaskModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
