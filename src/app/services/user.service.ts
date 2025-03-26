@@ -18,4 +18,7 @@ export class UserService {
   public addUser(user: User): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
   }
+  public createUserWithAddress(user: User): Observable<User> {
+    return this.http.post<User>(this.apiUrl, user);  // Envia o usuário com o endereço
+  }
 }
