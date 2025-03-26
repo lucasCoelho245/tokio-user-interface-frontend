@@ -5,7 +5,7 @@ Aplicação front-end construída com Angular para o cadastro de clientes e cons
 ## Requisitos do Sistema
 
 - Node.js (versão recomendada: 16.x ou superior)
-- Angular CLI
+- Angular CLI (versão 7.x)
 - npm (Node Package Manager)
 
 ## Instalação
@@ -17,7 +17,7 @@ Aplicação front-end construída com Angular para o cadastro de clientes e cons
 
 2. Navegue até o diretório do projeto.
     ```bash
-    cd frontend-tokiomarine
+    cd tokio-user-interface-frontend
     ```
 
 3. Instale as dependências do projeto.
@@ -53,10 +53,7 @@ A URL da API é configurada como `http://localhost:8080/clients`. O front-end se
 - **`user.service.ts`**: Serviço que interage com o backend para cadastrar um cliente e consultar os dados de endereço a partir do CEP.
 - **`cep.service.ts`**: Serviço que consulta o backend para obter o endereço baseado no CEP.
 
-### Testes
+### Responsividade
 
-A aplicação não utiliza Karma para testes automatizados. No entanto, o front-end realiza validações de inputs para impedir que o usuário forneça dados inválidos.
+A aplicação é **responsiva**, utilizando o **Bootstrap** para garantir que a interface se adapte bem a diferentes dispositivos e tamanhos de tela.
 
-## Contribuições
-
-Se você deseja contribuir com o projeto, faça um fork, crie uma branch e envie um pull request com suas modificações.
