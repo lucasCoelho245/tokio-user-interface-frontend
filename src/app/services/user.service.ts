@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/clients'; // Verifique se a URL do backend está correta
+  private apiUrl = 'http://localhost:8080/clients';
 
   constructor(private http: HttpClient) {}
 
@@ -19,6 +19,6 @@ export class UserService {
     return this.http.post<User>(this.apiUrl, user);
   }
   public createUserWithAddress(user: User): Observable<User> {
-    return this.http.post<User>(this.apiUrl, user);  // Envia o usuário com o endereço
+    return this.http.post<User>(this.apiUrl, user);
   }
 }

@@ -1,5 +1,44 @@
+<h3 class="justify-content-center mt-3 d-flex">Cadastro de Endereço</h3>
+
+<form [formGroup]="addressForm" (ngSubmit)="addAddress()">
+  <div class="form-group">
+    <label for="zipcode">CEP</label>
+    <input id="zipcode" formControlName="zipcode" type="text" class="form-control" placeholder="Digite o CEP">
+    <button type="button" class="btn btn-secondary mt-2" (click)="fetchAddress()">Buscar CEP</button>
+    <small *ngIf="addressForm.controls['zipcode'].invalid && addressForm.controls['zipcode'].touched">
+      CEP deve conter 8 dígitos.
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="street">Rua</label>
+    <input id="street" formControlName="street" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="district">Bairro</label>
+    <input id="district" formControlName="district" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="city">Cidade</label>
+    <input id="city" formControlName="city" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="state">Estado</label>
+    <input id="state" formControlName="state" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="complement">Complemento</label>
+    <input id="complement" formControlName="complement" type="text" class="form-control">
+  </div>
+
+</form>
+
 <form [formGroup]="userForm" (ngSubmit)="submitForm()">
-  <h3>Cadastro de Usuário</h3>
+  <h3 class="justify-content-center mt-3 d-flex">Cadastro de Usuário</h3>
   <div class="form-group">
     <label for="name">Nome</label>
     <input id="name" formControlName="name" type="text" class="form-control" placeholder="Digite seu nome">
@@ -38,45 +77,7 @@
 
 <hr>
 
-<h3>Cadastro de Endereço</h3>
 
-<form [formGroup]="addressForm" (ngSubmit)="addAddress()">
-  <div class="form-group">
-    <label for="zipcode">CEP</label>
-    <input id="zipcode" formControlName="zipcode" type="text" class="form-control" placeholder="Digite o CEP">
-    <button type="button" class="btn btn-secondary mt-2" (click)="fetchAddress()">Buscar CEP</button>
-    <small *ngIf="addressForm.controls['zipcode'].invalid && addressForm.controls['zipcode'].touched">
-      CEP deve conter 8 dígitos.
-    </small>
-  </div>
-
-  <div class="form-group">
-    <label for="street">Rua</label>
-    <input id="street" formControlName="street" type="text" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="district">Bairro</label>
-    <input id="district" formControlName="district" type="text" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="city">Cidade</label>
-    <input id="city" formControlName="city" type="text" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="state">Estado</label>
-    <input id="state" formControlName="state" type="text" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="complement">Complemento</label>
-    <input id="complement" formControlName="complement" type="text" class="form-control">
-  </div>
-
-  <button type="submit" class="btn btn-primary">Adicionar Endereço</button>
-</form>
 
 <hr>
 
