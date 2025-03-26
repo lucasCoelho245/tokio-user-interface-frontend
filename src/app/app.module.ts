@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UserFormComponent } from './components/form/user-form.component';
-import { UserTableComponent } from './components/user-table/user-table.component';
 import { CadastroUserComponent } from './components/cadastro-user/cadastro-user.component';
 import {TextMaskModule} from 'angular2-text-mask';
 
@@ -13,7 +12,6 @@ import {TextMaskModule} from 'angular2-text-mask';
   declarations: [
     AppComponent,
     UserFormComponent,
-    UserTableComponent,
     CadastroUserComponent,
   ],
   imports: [

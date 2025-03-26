@@ -48,7 +48,6 @@ export class UserFormComponent implements OnInit {
     this.markFormGroupTouched(this.userForm);
     this.markFormGroupTouched(this.addressForm);
 
-    // Remover espaços extras no nome antes de validar
     const trimmedName = this.userForm.controls['name'].value.trim();
     this.userForm.controls['name'].setValue(trimmedName);
 
