@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Address, User } from '../../models/user.model';
 import { AddressService } from '../../services/address.service';
-import { UserService } from '../../services/user.service';  // Certifique-se de que o UserService está sendo importado
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -13,47 +13,56 @@ export class UserFormComponent implements OnInit {
   @Output() userCreated = new EventEmitter<User>();
   public userForm: FormGroup;
   public addressForm: FormGroup;
-  public users: User[] = [];  // Armazenando os usuários e seus endereços
+  public users: User[] = [];
+
+  public cepMask = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+  public cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  public phoneMask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(
     private fb: FormBuilder,
     private addressService: AddressService,
-    private userService: UserService  // Injeção do serviço de usuário
+    private userService: UserService
   ) {}
 
   public ngOnInit(): void {
     this.userForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      name: ['', [Validators.required]],  // Alterado para permitir qualquer valor não vazio
       email: ['', [Validators.required, Validators.email]],
-      cpf: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
+      cpf: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]],
       phone: ['', [Validators.required, Validators.pattern(/^\(\d{2}\)\s?\d{5}-\d{4}$/)]],
     });
 
     this.addressForm = this.fb.group({
-      zipcode: ['', [Validators.required, Validators.minLength(8)]],
+      zipcode: ['', [Validators.required, Validators.pattern(/^\d{5}-?\d{3}$/)]],  // Permitindo o hífen opcional
       street: [''],
       district: [''],
       city: [''],
       state: [''],
       complement: ['']
     });
-
-    this.fetchUsers();  // Carregar os usuários ao iniciar o componente
+    this.fetchUsers();
   }
 
   public submitForm(): void {
+    this.markFormGroupTouched(this.userForm);
+    this.markFormGroupTouched(this.addressForm);
+
+    // Remover espaços extras no nome antes de validar
+    const trimmedName = this.userForm.controls['name'].value.trim();
+    this.userForm.controls['name'].setValue(trimmedName);
+
     if (this.userForm.valid && this.addressForm.valid) {
       const user: User = {
         ...this.userForm.value,
-        addresses: [this.addressForm.value]  // Adiciona o endereço ao usuário
+        addresses: [this.addressForm.value]
       };
 
-      // Envia a requisição para criar o usuário com o endereço
       this.userService.createUserWithAddress(user).subscribe(
         (response) => {
           console.log('Usuário com endereço criado com sucesso!', response);
-          this.users.push(response);  // Adiciona o usuário à lista de usuários
-          this.userCreated.emit(response); // Emite o evento com o usuário criado
+          this.users.push(response);
+          this.userCreated.emit(response);
           this.userForm.reset();
           this.addressForm.reset();
         },
@@ -61,21 +70,29 @@ export class UserFormComponent implements OnInit {
           console.error('Erro ao criar o usuário:', error);
         }
       );
+    } else {
+      console.log('Formulário inválido');
     }
+  }
+
+  private markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+    });
   }
 
   public autoFill(): void {
     this.userForm.patchValue({
       name: 'Usuário Teste',
       email: 'teste@example.com',
-      cpf: '12345678900',
+      cpf: '123.456.789-00',
       phone: '(11) 99999-9999'
     });
   }
 
   public addAddress(): void {
     if (this.addressForm.valid) {
-      this.users[0].addresses.push(this.addressForm.value);  // Agora 'addresses' existe em 'User'
+      this.users[0].addresses.push(this.addressForm.value);
       this.addressForm.reset();
     }
   }

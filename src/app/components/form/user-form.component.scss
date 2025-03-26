@@ -106,3 +106,11 @@ h2 {
     width: 100%;
   }
 }
+.is-invalid {
+  border-color: red;
+}
+
+.is-invalid + small {
+  color: red;
+  font-size: 0.875rem;
+}

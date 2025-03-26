@@ -3,10 +3,11 @@
 <form [formGroup]="addressForm" (ngSubmit)="addAddress()">
   <div class="form-group">
     <label for="zipcode">CEP</label>
-    <input id="zipcode" formControlName="zipcode" type="text" class="form-control" placeholder="Digite o CEP">
+    <input id="zipcode" formControlName="zipcode" type="text" class="form-control" placeholder="Digite o CEP"
+           [textMask]="{mask: cepMask}" [ngClass]="{'is-invalid': addressForm.controls['zipcode'].invalid && addressForm.controls['zipcode'].touched}">
     <button type="button" class="btn btn-secondary mt-2" (click)="fetchAddress()">Buscar CEP</button>
     <small *ngIf="addressForm.controls['zipcode'].invalid && addressForm.controls['zipcode'].touched">
-      CEP deve conter 8 dígitos.
+      CEP deve conter 8 dígitos numéricos.
     </small>
   </div>
 
@@ -41,7 +42,7 @@
   <h3 class="justify-content-center mt-3 d-flex">Cadastro de Usuário</h3>
   <div class="form-group">
     <label for="name">Nome</label>
-    <input id="name" formControlName="name" type="text" class="form-control" placeholder="Digite seu nome">
+    <input id="name" formControlName="name" type="text" class="form-control" placeholder="Digite seu nome" [ngClass]="{'is-invalid': userForm.controls['name'].invalid && userForm.controls['name'].touched}">
     <small *ngIf="userForm.controls['name'].invalid && userForm.controls['name'].touched">
       Nome é obrigatório e deve ter no mínimo 3 caracteres.
     </small>
@@ -49,7 +50,7 @@
 
   <div class="form-group">
     <label for="email">Email</label>
-    <input id="email" formControlName="email" type="email" class="form-control" placeholder="Digite seu email">
+    <input id="email" formControlName="email" type="email" class="form-control" placeholder="Digite seu email" [ngClass]="{'is-invalid': userForm.controls['email'].invalid && userForm.controls['email'].touched}">
     <small *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched">
       Insira um email válido.
     </small>
@@ -57,7 +58,8 @@
 
   <div class="form-group">
     <label for="cpf">CPF</label>
-    <input id="cpf" formControlName="cpf" type="text" class="form-control" placeholder="000.000.000-00">
+    <input id="cpf" formControlName="cpf" type="text" class="form-control" placeholder="000.000.000-00"
+           [textMask]="{mask: cpfMask}" [ngClass]="{'is-invalid': userForm.controls['cpf'].invalid && userForm.controls['cpf'].touched}">
     <small *ngIf="userForm.controls['cpf'].invalid && userForm.controls['cpf'].touched">
       CPF deve estar no formato correto.
     </small>
@@ -65,19 +67,16 @@
 
   <div class="form-group">
     <label for="phone">Telefone</label>
-    <input id="phone" formControlName="phone" type="text" class="form-control" placeholder="(00) 00000-0000">
+    <input id="phone" formControlName="phone" type="text" class="form-control" placeholder="(00) 00000-0000"
+           [textMask]="{mask: phoneMask}" [ngClass]="{'is-invalid': userForm.controls['phone'].invalid && userForm.controls['phone'].touched}">
     <small *ngIf="userForm.controls['phone'].invalid && userForm.controls['phone'].touched">
-      Telefone deve estar no formato correto.
+      Telefone deve estar no formato correto (ex: (00) 00000-0000).
     </small>
   </div>
 
   <button type="submit" [disabled]="userForm.invalid" class="btn btn-success">Cadastrar</button>
   <button type="button" (click)="autoFill()" class="btn btn-secondary">Autopreencher</button>
 </form>
-
-<hr>
-
-
 
 <hr>
 
